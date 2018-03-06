@@ -1,0 +1,839 @@
+{
+  "took": 4,
+  "timed_out": false,
+  "_shards": {
+    "total": 5,
+    "successful": 5,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": 11,
+    "max_score": 0.47000363,
+    "hits": [
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "7",
+        "_score": 0.47000363,
+        "_source": {
+          
+        }
+      },
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "13",
+        "_score": 0.47000363,
+        "_source": {
+          
+        }
+      },
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "4",
+        "_score": 0.35667494,
+        "_source": {
+          
+        }
+      },
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "6",
+        "_score": 0.35667494,
+        "_source": {
+          
+        }
+      },
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "15",
+        "_score": 0.35667494,
+        "_source": {
+          
+        }
+      },
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "5",
+        "_score": 0.2876821,
+        "_source": {
+          
+        }
+      },
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "8",
+        "_score": 0.2876821,
+        "_source": {
+          
+        }
+      },
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "10",
+        "_score": 0.2876821,
+        "_source": {
+          
+        }
+      },
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "12",
+        "_score": 0.2876821,
+        "_source": {
+          
+        }
+      },
+      {
+        "_index": "sample_index",
+        "_type": "sample_type",
+        "_id": "3",
+        "_score": 0.18232156,
+        "_source": {
+          
+        }
+      }
+    ]
+  },
+  "aggregations": {
+    "data": {
+      "buckets": [
+        {
+          "key_as_string": "2018-01-18T10:15:00.000Z",
+          "key": 1516270500000,
+          "doc_count": 1,
+          "output": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "corebuild",
+                "doc_count": 1,
+                "runs": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 1,
+                      "doc_count": 1,
+                      "latest": {
+                        "hits": {
+                          "total": 1,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "7",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T10:15:30Z",
+                                "createdDate": "2018-01-18T10:15:30Z",
+                                "accessserviceid": "testartifactory-accessid",
+                                "serviceid": "testartifactory-serviceid1",
+                                "Runnumber": 1,
+                                "Commits": "2",
+                                "BuildName": "corebuild",
+                                "artefacts": [
+                                  {
+                                    "name": "phar",
+                                    "count": 1,
+                                    "size": 100,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "file",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "coremodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "test"
+                              },
+                              "sort": [
+                                1516270530000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key_as_string": "2018-01-18T10:30:00.000Z",
+          "key": 1516271400000,
+          "doc_count": 1,
+          "output": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "executorbuild",
+                "doc_count": 1,
+                "runs": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 1,
+                      "doc_count": 1,
+                      "latest": {
+                        "hits": {
+                          "total": 1,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "8",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T10:30:30Z",
+                                "createdDate": "2018-01-18T10:30:30Z",
+                                "accessserviceid": "testartifactorySample2-accessid",
+                                "serviceid": "testartifactorySample2-serviceid1",
+                                "Runnumber": 1,
+                                "Commits": "2",
+                                "BuildName": "executorbuild",
+                                "artefacts": [
+                                  {
+                                    "name": "war",
+                                    "count": 1,
+                                    "size": 100,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "pom",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "executormodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "dev"
+                              },
+                              "sort": [
+                                1516271430000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key_as_string": "2018-01-18T11:15:00.000Z",
+          "key": 1516274100000,
+          "doc_count": 4,
+          "output": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "corebuild",
+                "doc_count": 2,
+                "runs": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 2,
+                      "doc_count": 2,
+                      "latest": {
+                        "hits": {
+                          "total": 2,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "15",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T11:28:30Z",
+                                "createdDate": "2018-01-18T11:25:30Z",
+                                "accessserviceid": "testartifactory-accessid",
+                                "serviceid": "testartifactory-serviceid1",
+                                "Runnumber": 2,
+                                "Commits": "2",
+                                "BuildName": "corebuild",
+                                "artefacts": [
+                                  {
+                                    "name": "phar",
+                                    "count": 1,
+                                    "size": 100,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "file",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "coremodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "prod"
+                              },
+                              "sort": [
+                                1516274910000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "executorbuild",
+                "doc_count": 2,
+                "runs": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 4,
+                      "doc_count": 1,
+                      "latest": {
+                        "hits": {
+                          "total": 1,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "10",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T11:25:30Z",
+                                "createdDate": "2018-01-18T11:25:30Z",
+                                "accessserviceid": "testartifactorySample2-accessid",
+                                "serviceid": "testartifactorySample2-serviceid1",
+                                "Runnumber": 4,
+                                "Commits": "2",
+                                "BuildName": "executorbuild",
+                                "artefacts": [
+                                  {
+                                    "name": "war",
+                                    "count": 1,
+                                    "size": 100,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "pom",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "executormodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "dev"
+                              },
+                              "sort": [
+                                1516274730000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "key": 5,
+                      "doc_count": 1,
+                      "latest": {
+                        "hits": {
+                          "total": 1,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "11",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T11:28:30Z",
+                                "createdDate": "2018-01-18T11:28:30Z",
+                                "accessserviceid": "testartifactorySample2-accessid",
+                                "serviceid": "testartifactorySample2-serviceid1",
+                                "Runnumber": 5,
+                                "Commits": "2",
+                                "BuildName": "executorbuild",
+                                "artefacts": [
+                                  {
+                                    "name": "war",
+                                    "count": 1,
+                                    "size": 100,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "pom",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "executormodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "dev"
+                              },
+                              "sort": [
+                                1516274910000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key_as_string": "2018-01-18T11:30:00.000Z",
+          "key": 1516275000000,
+          "doc_count": 1,
+          "output": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "executorbuild",
+                "doc_count": 1,
+                "runs": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 6,
+                      "doc_count": 1,
+                      "latest": {
+                        "hits": {
+                          "total": 1,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "12",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T11:35:30Z",
+                                "createdDate": "2018-01-18T11:35:30Z",
+                                "accessserviceid": "testartifactorySample2-accessid",
+                                "serviceid": "testartifactorySample2-serviceid1",
+                                "Runnumber": 6,
+                                "Commits": "2",
+                                "BuildName": "executorbuild",
+                                "artefacts": [
+                                  {
+                                    "name": "war",
+                                    "count": 1,
+                                    "size": 100,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "pom",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "executormodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "dev"
+                              },
+                              "sort": [
+                                1516275330000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key_as_string": "2018-01-18T15:45:00.000Z",
+          "key": 1516290300000,
+          "doc_count": 2,
+          "output": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "corebuild",
+                "doc_count": 1,
+                "runs": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 2,
+                      "doc_count": 1,
+                      "latest": {
+                        "hits": {
+                          "total": 1,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "3",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T15:45:30Z",
+                                "createdDate": "2018-01-18T15:45:30Z",
+                                "accessserviceid": "testartifactory-accessid",
+                                "serviceid": "testartifactory-serviceid1",
+                                "Runnumber": 2,
+                                "Commits": "2",
+                                "BuildName": "corebuild",
+                                "artefacts": [
+                                  {
+                                    "name": "phar",
+                                    "count": 1,
+                                    "size": 100,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "file",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "coremodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "dev"
+                              },
+                              "sort": [
+                                1516290330000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "key": "executorbuild",
+                "doc_count": 1,
+                "runs": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 2,
+                      "doc_count": 1,
+                      "latest": {
+                        "hits": {
+                          "total": 1,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "6",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T15:45:30Z",
+                                "createdDate": "2018-01-18T15:45:30Z",
+                                "accessserviceid": "testartifactorySample2-accessid",
+                                "serviceid": "testartifactorySample2-serviceid1",
+                                "Runnumber": 2,
+                                "Commits": "2",
+                                "BuildName": "executorbuild",
+                                "artefacts": [
+                                  {
+                                    "name": "war",
+                                    "count": 1,
+                                    "size": 100,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "pom",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "executormodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "dev"
+                              },
+                              "sort": [
+                                1516290330000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key_as_string": "2018-01-18T16:00:00.000Z",
+          "key": 1516291200000,
+          "doc_count": 1,
+          "output": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "corebuild",
+                "doc_count": 1,
+                "runs": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 3,
+                      "doc_count": 1,
+                      "latest": {
+                        "hits": {
+                          "total": 1,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "4",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T16:00:30Z",
+                                "createdDate": "2018-01-18T16:00:30Z",
+                                "accessserviceid": "testartifactory-accessid",
+                                "serviceid": "testartifactory-serviceid1",
+                                "Runnumber": 3,
+                                "Commits": "5",
+                                "BuildName": "corebuild",
+                                "artefacts": [
+                                  {
+                                    "name": "phar",
+                                    "count": 1,
+                                    "size": 150,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "file",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "coremodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "dev"
+                              },
+                              "sort": [
+                                1516291230000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key_as_string": "2018-01-18T16:15:00.000Z",
+          "key": 1516292100000,
+          "doc_count": 1,
+          "output": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+              {
+                "key": "corebuild",
+                "doc_count": 1,
+                "runs": {
+                  "doc_count_error_upper_bound": 0,
+                  "sum_other_doc_count": 0,
+                  "buckets": [
+                    {
+                      "key": 2,
+                      "doc_count": 1,
+                      "latest": {
+                        "hits": {
+                          "total": 1,
+                          "max_score": null,
+                          "hits": [
+                            {
+                              "_index": "sample_index",
+                              "_type": "sample_type",
+                              "_id": "5",
+                              "_score": null,
+                              "_source": {
+                                "ProjectName": "TestProject",
+                                "timestamp": "2018-01-18T16:15:30Z",
+                                "createdDate": "2018-01-18T16:15:30Z",
+                                "accessserviceid": "testartifactory-accessid",
+                                "serviceid": "testartifactory-serviceid1",
+                                "Runnumber": 2,
+                                "Commits": "2",
+                                "BuildName": "corebuild",
+                                "artefacts": [
+                                  {
+                                    "name": "phar",
+                                    "count": 1,
+                                    "size": 100,
+                                    "downloads": 2
+                                  },
+                                  {
+                                    "name": "file",
+                                    "count": 1,
+                                    "size": 75,
+                                    "downloads": 5
+                                  }
+                                ],
+                                "modules": [
+                                  {
+                                    "dependencies": 5,
+                                    "name": "coremodule"
+                                  },
+                                  {
+                                    "dependencies": 10,
+                                    "name": "sdkmodule"
+                                  }
+                                ],
+                                "stage": "test"
+                              },
+                              "sort": [
+                                1516292130000
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
