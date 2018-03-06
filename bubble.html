@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html>
+<head>
+<title> D3 tutorial </title>
+
+
+<div id="chartContainer">
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+
+
+<script type="text/javascript">
+
+function draw(data)
+{
+    var margin = {top: 15, right: 20, bottom: 20, left: 65},
+		padding = {top: 0, right: 0, bottom: 50, left: 50};
+	
+	var buttonHeight = 20, buttonWidth = 45;
+	
+	var svg = dimple.newSvg("#chartContainer", 590, 420);
+	
+	var frame = 2000;
+	
+	var charts = [ 	new dimple.chart(svg, null),
+					new dimple.chart(svg, data) ];
+					
+	var button = svg.append("g")
+				.attr("id","button")
+				.classed("Pause",true)
+				.attr("transform", "translate(" + margin.left + "," +
+											margin.top + ")");
+	button.append("rect")
+			.attr("height",buttonHeight)
+			.attr("width",buttonWidth)
+			.attr("fill","lightgrey")
+			.on("mouseover",function(){d3.select(this).attr("fill","grey")})
+			.on("mouseout",function(){d3.select(this).attr("fill","lightgrey")})
+			.style("stroke","black");
+			
+	button.append("text")
+			.attr("x",buttonWidth/2)
+			.attr("y",buttonHeight/2)
+			.style("font-size", "12px")
+			.attr("text-anchor","middle")
+			.attr("alignment-baseline","central")
+			.text("Pause");
+	
+	button.on("click", onClick);
+				
+	var lastTime = null;
+	var buildTypes = dimple.getUniqueValues(data, "buildName");
+	
+	charts.forEach(function (chart, i) {
+	chart.setBounds(60, 40, 510, 330);
+	
+	var commits = chart.addMeasureAxis("x", "commits");
+	commits.overrideMax  = 10;
+	commits.title = "Number of Commits";
+	
+    var artCount = chart.addMeasureAxis("y", "artefact_count");
+	artCount.overrideMax = 10;
+	artCount.title = "Number of Artefacts";
+	
+	var artSize = chart.addMeasureAxis("z", "artefact_size_total");
+	artSize.overrideMax = 2;  
+	artSize.title = "Artefact Size";
+	
+    buildTypes.forEach(function (buildType, k) {
+            chart.assignColor(
+              buildType,
+              charts[0].defaultColors[k].fill,
+              "white",
+              (i === 0 ? 0.3 : 1));
+            }, this);
+          }, this );
+	
+		     
+    var story = charts[1].setStoryboard("buildTime", function (d) {
+	          if (lastTime !== null) {
+              var lastData = dimple.filterData(data, "buildTime", lastTime);
+              var lastSeries = charts[0].addSeries("buildName", dimple.plot.bubble);
+              lastSeries.data = lastData;
+              charts[0].draw();
+             
+              lastSeries.shapes.classed("historic", true);
+              
+			  d3.selectAll(".historic")
+                  .each(function () {
+                    var shape = d3.select(this),
+                        opacity = shape.style("opacity") - 0.02;
+                    shape.style("opacity", opacity);
+                  });
+                }		
+			 lastTime = d;
+            });
+			
+	series = charts[1].addSeries("buildName", dimple.plot.bubble)
+			 charts[1].addLegend(250, 10, 200, 10);
+             charts[1].draw();
+			 d3.selectAll("circle").style("stroke-width", 2);
+			 
+			charts[1].legends = [];
+			
+			var storyLabels = story.storyLabel;
+			
+			story.frameDuration = frame;
+			
+	
+	function onClick() 
+	{
+		if(button.classed("Pause"))
+		{
+			button.classed("Pause",false);
+			updateButton("Play");
+			story.pauseAnimation();
+		}
+		else if(button.classed("Play"))
+		{
+			button.classed("Play",false);
+			updateButton("Pause");
+			story.startAnimation();
+		}
+    }
+	
+	function updateButton(newClass)
+		 {
+			button.classed(newClass,true)
+			d3.select("#button text")
+				.transition()
+				.text(newClass);
+		 }
+		 
+  }
+
+     
+</script> 
+</div>
+</head>
+
+<body>
+<script type="text/javascript">
+  d3.csv("data/buildExtract.csv", draw);
+</script>
+</body>
+
+</html>
