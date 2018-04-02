@@ -15,6 +15,7 @@
 
 function draw(data)
 {
+
     var margin = {top: 15, right: 20, bottom: 20, left: 65},
 		padding = {top: 0, right: 0, bottom: 50, left: 50};
 	
@@ -34,16 +35,16 @@ function draw(data)
 											margin.top + ")");
 	button.append("rect")
 			.attr("height",buttonHeight)
-			.attr("width",buttonWidth)
+			.attr("width",buttonWidth + 28)
 			.attr("fill","lightgrey")
 			.on("mouseover",function(){d3.select(this).attr("fill","grey")})
 			.on("mouseout",function(){d3.select(this).attr("fill","lightgrey")})
 			.style("stroke","black");
 			
 	button.append("text")
-			.attr("x",buttonWidth/2)
+			.attr("x",(buttonWidth/2) + 10)
 			.attr("y",buttonHeight/2)
-			.style("font-size", "12px")
+			.style("font-size", "14px")
 			.attr("text-anchor","middle")
 			.attr("alignment-baseline","central")
 			.text("Pause");
@@ -51,20 +52,20 @@ function draw(data)
 	button.on("click", onClick);
 				
     var lastTime = null;
-	var buildTypes = dimple.getUniqueValues(data, "buildName");
+	var buildTypes = dimple.getUniqueValues(data, "z_axis_value");
 	
 	charts.forEach(function (chart, i) {
 	chart.setBounds(60, 40, 510, 330);
 	
-	var commits = chart.addMeasureAxis("x", "commits");
+	var commits = chart.addMeasureAxis("x", "x_axis_value");
 	commits.overrideMax  = 10;
 	commits.title = "Number of Commits";
 	
-    var artCount = chart.addMeasureAxis("y", "artefact_count");
+    var artCount = chart.addMeasureAxis("y", "y_axis_value");
 	artCount.overrideMax = 10;
 	artCount.title = "Number of Artefacts";
 	
-	var artSize = chart.addMeasureAxis("z", "artefact_size_total");
+	var artSize = chart.addMeasureAxis("z", "bubble_axis_value");
 	artSize.overrideMax = 2;  
 	artSize.title = "Artefact Size";
 	
@@ -78,10 +79,10 @@ function draw(data)
           }, this );
 	
 		     
-    var story = charts[1].setStoryboard("buildTime", function (d) {
+    var story = charts[1].setStoryboard("time_axis_value", function (d) {
 	          if (lastTime !== null) {
-              var lastData = dimple.filterData(data, "buildTime", lastTime);
-              var lastSeries = charts[0].addSeries("buildName", dimple.plot.bubble);
+              var lastData = dimple.filterData(data, "time_axis_value", lastTime);
+              var lastSeries = charts[0].addSeries("z_axis_value", dimple.plot.bubble);
               lastSeries.data = lastData;
               charts[0].draw();
              
@@ -97,8 +98,8 @@ function draw(data)
 			 lastTime = d;
             });
 			
-	series = charts[1].addSeries("buildName", dimple.plot.bubble)
-			 charts[1].addLegend(250, 10, 200, 10);
+	series = charts[1].addSeries("z_axis_value", dimple.plot.bubble)
+			 charts[1].addLegend(300, 10, 200, 10);
              charts[1].draw();
 			 d3.selectAll("circle").style("stroke-width", 2);
 			 
@@ -142,7 +143,7 @@ function draw(data)
 
 <body>
 <script type="text/javascript">
-  d3.csv("data/buildExtract.csv", draw);
+  d3.csv("data/axisData.csv", draw);
 </script>
 </body>
 
