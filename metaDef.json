@@ -1,0 +1,28 @@
+{
+"file":{
+"wrk_dir" : "C:/work/4d-time-series-visualiser"
+},
+"axis_paths":{
+"time_axis": "aggregations -> data -> buckets* -> key_as_string",
+"z_axis" : "aggregations -> data -> buckets* -> output -> buckets* -> key",
+"y_axis": "aggregations -> data -> buckets* -> output -> buckets* -> runs -> buckets* -> latest -> hits ->hits* -> _source -> artefacts* -> name",
+"x_axis": "aggregations -> data -> buckets* -> output -> buckets* -> runs -> buckets* -> latest -> hits ->hits* -> _source -> Commits",
+"bubble_axis": "aggregations -> data -> buckets* -> output -> buckets* -> runs -> buckets* -> latest -> hits ->hits* -> _source -> artefacts* -> size"
+},
+"aggs":{
+	"y_axis":{
+		"terms": { "field": "artefacts" },
+		"aggs": { "count":
+					{  "field": "name"  }
+			    }
+		
+		 
+		},
+	"bubble_axis":{
+	    "terms": { "field": "artefacts" },
+		"aggs":{ "sum":
+					{  "field": "size" 	}
+			   }
+		}
+	}
+}
