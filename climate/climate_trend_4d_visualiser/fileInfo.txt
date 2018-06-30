@@ -1,0 +1,17 @@
+csv_mapper.json: 
+- A JSON file that has information for merging the input files
+	- file: Name of the file to be read
+	- select_col_rename : A key:value pair with key indicating the name of the selected column in the input file and value indicating the name of this column in the output file. 
+    - reshape_col : All the except the column specified here will be transposed
+		After the transpose, the output will be in the form (reshape_col, variable, value). Measure and measure_type are used for this purpose
+	- measure: The name of the value after the transpose
+	- measure_type: The name of the variable after the transpose
+
+csv_parser.R : Has the logic to merge the files based on the information specified in csv_mapper.json
+
+data_prep.R : Has logic to do some more data preparation including deriving season type based of the information in 'MONTH' column and also deriving MAX_TEMP_ANAM and MIN_TEMP_ANAM 
+which are the deviations from the base period temperature.
+
+visualiser.html: An html file that reads the json file and calls javascript function for further processing and display
+
+script.js : has the d3.js and dimple.js code for drawing the bubble chart. currently all the dimension information are hard coded.

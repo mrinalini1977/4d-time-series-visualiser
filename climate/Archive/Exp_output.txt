@@ -1,0 +1,25 @@
+The output in json format like this
+
+{
+"Year" : 1991
+"Ann_rain": 1000
+"Seasonal_rain" :
+[
+	{
+		"Season" : "JF"
+		"Rain_amt" : 50
+	}
+	{
+		"Season" : "MAM"
+		"Rain_amt" : "250"
+	}
+	{
+		"Season" : "JJAS"
+		"Rain_amt" : "500"
+	}
+	{
+		"Season" : "OND"
+		"Rain_amt" : "200"
+	}
+]
+}

@@ -1,0 +1,202 @@
+<!doctype html>
+
+<html>
+<head>
+<title> D3 tutorial </title>
+
+
+<div id="chartContainer">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.1.6/dimple.latest.min.js"></script>
+
+<script src="script.js"></script>
+
+<style>
+rect {
+	fill: teal;
+}
+.dropdown .option {
+  display:none;
+}
+.dropdown rect{
+  stroke-width:0.5;
+  stroke:rgb(0,0,0)
+}
+.dropdown:hover .option {
+  display:unset;
+}
+.dropdown {
+  cursor:pointer;
+}
+</style>
+
+<script type="text/javascript">
+
+function draw(data)
+{
+	
+    var margin = {top: 15, right: 20, bottom: 20, left: 65},
+		padding = {top: 0, right: 0, bottom: 50, left: 50};
+	
+	var buttonHeight = 20, buttonWidth = 30;
+	
+	var svgWidth = 590, svgHeight = 420;
+	
+	var svg = dimple.newSvg("#chartContainer", svgWidth, svgHeight);
+	
+	var frame = 1500;
+	
+	var charts = [ 	new dimple.chart(svg, null),
+					new dimple.chart(svg, data) ];
+					
+	
+	var button = svg.append("g")
+				.attr("id","button")
+				.classed("Pause",true)
+				.attr("transform", "translate(" + margin.left + "," +
+											margin.top + ")");
+	button.append("rect")
+			.attr("height",buttonHeight)
+			.attr("width",buttonWidth)
+			.attr("fill","lightgrey")
+			.on("mouseover",function(){d3.select(this).attr("fill","grey")})
+			.on("mouseout",function(){d3.select(this).attr("fill","lightgrey")})
+			.style("stroke","black");
+			
+	button.append("text")
+			.attr("x",(buttonWidth/2))
+			.attr("y",buttonHeight/2)
+			.style("font-size", "10px")
+			.attr("text-anchor","middle")
+			.attr("alignment-baseline","central")
+			.text("Pause");
+	
+	button.on("click", onClick);
+	
+	//var selectOptions = Object.keys(data[1])
+	
+	//createDropDown(svg, selectOptions.splice(1,selectOptions.length));
+				
+    var lastTime = null;
+	var monsoonLevel = dimple.getUniqueValues(data, "MONSOON_RAIN_LEVEL");
+	
+	charts.forEach(function (chart, i) {
+	alert(i);
+	chart.setBounds(60, 40, 510, 330);
+	
+	var minTempValues = data.map(function(d) { return d.AVG_MIN_TEMP ; } );
+	var maxTempValues = data.map(function(d) { return d.AVG_MAX_TEMP ; } );
+	var annualRainValues = data.map(function(d) { return d.ANNUAL_RAINFALL ;});
+	
+	var minTemp_l = Math.min.apply(null, minTempValues);
+	var minTemp_u = Math.max.apply(null,minTempValues);
+	
+	var maxTemp_l = Math.min.apply(null,maxTempValues);
+	var maxTemp_u = Math.max.apply(null,maxTempValues);
+	
+	var annRain_l = Math.min.apply(null,annualRainValues);
+	var annRain_u = Math.max.apply(null, annualRainValues);
+	
+	var minTemp_r = minTemp_u - minTemp_l
+	var maxtemp_r = maxTemp_u - maxTemp_l
+	
+	var minTemp = chart.addMeasureAxis("x", "AVG_MIN_TEMP")
+	minTemp.overrideMin  = Math.floor(minTemp_l);
+	minTemp.overrideMax = Math.ceil(minTemp_u);
+	minTemp.ticks = 15;
+	minTemp.showGridlines = true;
+	minTemp.title = "Average Minimum Temperature";
+	
+    var maxTemp = chart.addMeasureAxis("y", "AVG_MAX_TEMP");
+	maxTemp.overrideMin = Math.floor(maxTemp_l);
+	maxTemp.overrideMax = Math.floor(maxTemp_u);
+	maxTemp.ticks = 10;
+	maxTemp.title = "Average Maximum Temperature";
+	
+	var annRain = chart.addMeasureAxis("z", "ANNUAL_RAINFALL");
+	annRain.overrideMin = Math.floor(annRain_l);
+	annRain.overrideMax = Math.ceil(annRain_u);	
+	annRain.title = "Annual Rainfall";
+	
+    monsoonLevel.forEach(function (m_level, k) {
+            chart.assignColor(
+              m_level,
+              charts[0].defaultColors[k].fill,
+              "white",
+              (i === 0 ? 0.3 : 1));
+            }, this);
+          }, this );
+	
+		     
+    var story = charts[1].setStoryboard("YEAR", function (d) {
+	          if (lastTime !== null) {
+              var lastData = dimple.filterData(data, "YEAR", lastTime);
+              var lastSeries = charts[0].addSeries("MONSOON_RAIN_LEVEL", dimple.plot.bubble);
+              lastSeries.data = lastData;
+              charts[0].draw();
+			  
+		          
+              lastSeries.shapes.classed("historic", true);
+              
+			  d3.selectAll(".historic")
+                  .each(function () {
+                    var shape = d3.select(this),
+                        opacity = shape.style("opacity") - 0.02;
+                    shape.style("opacity", opacity);
+                  });
+                }		
+			 lastTime = d;
+            });
+			
+	series = charts[1].addSeries("MONSOON_RAIN_LEVEL", dimple.plot.bubble)
+			 charts[1].addLegend(300, 10, 300, 10);
+             charts[1].draw();
+			 d3.selectAll("circle").style("stroke-width", 2);
+			 
+			charts[1].legends = [];
+			
+			var storyLabels = story.storyLabel;
+			
+			story.frameDuration = frame;  
+			
+	
+	function onClick() 
+	{
+		if(button.classed("Pause"))
+		{
+			button.classed("Pause",false);
+			updateButton("Play");
+			story.pauseAnimation();
+		}
+		else if(button.classed("Play"))
+		{
+			button.classed("Play",false);
+			updateButton("Pause");
+			story.startAnimation();
+		}
+    }
+	
+	function updateButton(newClass)
+		 {
+			button.classed(newClass,true)
+			d3.select("#button text")
+				.transition()
+				.text(newClass);
+		 }
+		 
+}
+
+     
+</script> 
+</div>
+</head>
+
+<body>
+
+<script type="text/javascript">
+  d3.json("climate_data.json", draw);
+</script>
+</body>
+
+</html>
